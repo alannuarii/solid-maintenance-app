@@ -1,0 +1,40 @@
+body {
+  font-family: Gordita, Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  margin: 0;
+}
+
+.navbar {
+  color: #ffffff !important;
+}
+
+.app-bg {
+  /* background-image: url("/img/bg.jpg"); */
+  /* background-size: cover; */
+  /* background-position: center;
+  background-repeat: no-repeat; */
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Margin kiri 200px untuk layar lg ke atas */
+@media (min-width: 992px) {
+  .content {
+    margin-top: 80px !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .content {
+    margin-top: 80px !important;
+  }
+}
