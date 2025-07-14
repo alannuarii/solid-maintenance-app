@@ -3,32 +3,26 @@ import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import "./index.css";
 import { generatePMSchedule } from "../../lib/utils/pmSchedule";
+import { engines } from "../../../public/data/engineData";
 
 export default function Preventive() {
   let calendarRef;
   let calendarInstance;
   const [currentHours, setCurrentHours] = createSignal([]);
 
-  const unitToMesinMap = {
-    1: "SWD 6FHD 240 Unit 1",
-    4: "Deutz MWM 212 V12 Unit 4",
-    5: "Deutz MWM 212 V12 Unit 5",
-    6: "Mitsubishi S16R PTA-S Unit 6",
-    7: "Mitsubishi S16R PTA-S Unit 7",
-    8: "Cummins KTA50-G8 Unit 8",
-    9: "Cummins KTA50-G8 Unit 9",
-  };
-
   onMount(async () => {
     try {
       const response = await fetch("/api/servicehour");
       const data = await response.json();
 
-      const fullData = data.map(({ unit, jamoperasi }) => ({
-        unit,
-        jamoperasi,
-        mesin: unitToMesinMap[unit] || `Unit ${unit}`,
-      }));
+      const fullData = data.map(({ unit, jamoperasi }) => {
+        const engine = engines().find((e) => e.unit === unit);
+        return {
+          unit,
+          jamoperasi,
+          mesin: engine ? `${engine.mesin} Unit ${engine.unit}` : `Unit ${unit}`,
+        };
+      });
 
       setCurrentHours(fullData);
 

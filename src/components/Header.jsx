@@ -14,7 +14,7 @@ export default function Header() {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link active" href="/preventive">
                 Preventive Maintenance
               </a>
             </li>
@@ -24,7 +24,7 @@ export default function Header() {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link active" href="/material">
                 Material
               </a>
             </li>

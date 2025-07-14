@@ -10,16 +10,6 @@ export default function PreventiveUnit() {
   let calendarInstance;
   const params = useParams();
 
-  const unitToMesinMap = {
-    1: "SWD 6FHD 240 Unit 1",
-    4: "Deutz MWM 212 V12 Unit 4",
-    5: "Deutz MWM 212 V12 Unit 5",
-    6: "Mitsubishi S16R PTA-S Unit 6",
-    7: "Mitsubishi S16R PTA-S Unit 7",
-    8: "Cummins KTA50-G8 Unit 8",
-    9: "Cummins KTA50-G8 Unit 9",
-  };
-
   const [currentHours, setCurrentHours] = createSignal([]);
 
   onMount(async () => {
@@ -28,19 +18,13 @@ export default function PreventiveUnit() {
       const response = await fetch(`/api/servicehour/${unit}`);
       const data = await response.json();
 
-      const fullData = data.map(({ unit, jamoperasi }) => ({
-        unit,
-        jamoperasi,
-        mesin: unitToMesinMap[unit] || `Unit ${unit}`,
-      }));
-
-      setCurrentHours(fullData);
+      setCurrentHours(data);
 
       // initialize calendar once
       calendarInstance = new Calendar(calendarRef, {
         plugins: [dayGridPlugin],
         initialView: "dayGridMonth",
-        events: generatePMSchedule(fullData),
+        events: generatePMSchedule(data),
         height: "auto",
         contentHeight: "auto",
         aspectRatio: 1.5,
