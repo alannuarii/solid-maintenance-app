@@ -86,7 +86,9 @@ export default function Material() {
                   Mesin/Unit
                 </label>
                 <select class="form-select" id="unitSelect" aria-label="Default select example" value={selectedUnit()} onChange={(e) => setSelectedUnit(e.currentTarget.value)}>
-                  <option selected disabled>Pilih unit . . .</option>
+                  <option selected disabled>
+                    Pilih unit . . .
+                  </option>
                   {engines().map(({ mesin, unit }) => (
                     <option value={unit} key={unit}>
                       {mesin} Unit {unit}
@@ -114,23 +116,37 @@ export default function Material() {
                     <label for="inputEmail3" class="col-3 col-md-2 col-form-label fw-bold">
                       Total PM
                     </label>
-                    <div class="col-2">
+                    <div class="col-3">
                       <input type="text" class="form-control text-center" id="inputEmail3" value={materials().pm.totalPM} disabled></input>
                     </div>
                   </div>
-
-                  {materials().pm.cycles.map(({ cycle, total }) => (
-                    <button class="btn btn-sm btn-secondary me-2" key={cycle} disabled>
-                      {cycle} <span class="ms-md-3 badge text-bg-primary rounded-pill">{total}</span>
-                    </button>
-                  ))}
+                  <div class="col-md-6">
+                    <table class="table table-bordered text-center">
+                      <thead>
+                        <tr class="table-primary">
+                          <th scope="col">P1</th>
+                          <th scope="col">P2</th>
+                          <th scope="col">P3</th>
+                          <th scope="col">P4</th>
+                          <th scope="col">P5</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          {materials().pm.cycles.map(({ total }, index) => (
+                            <th>{total}</th>
+                          ))}
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
 
                 <div>
                   <span class="badge text-bg-primary mb-2">Material Fast Moving</span>
                   {materials().totalMaterials.map(({ nama, jumlah, satuan }) => (
                     <div class="row mb-1" key={nama}>
-                      <label for="inputEmail3" class="col-5 col-md-4 col-form-label">
+                      <label for="inputEmail3" class="col-6 col-md-4 col-form-label">
                         {nama}
                       </label>
                       <div class="col-3">

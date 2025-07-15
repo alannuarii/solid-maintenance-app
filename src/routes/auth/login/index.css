@@ -1,0 +1,75 @@
+.login-wrapper {
+  height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  background-image: url("../public/img/bg.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Panel kanan berisi form login */
+.right-panel {
+  width: 100%;
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  max-width: 380px;
+  width: 100%;
+}
+
+.icon-user {
+  color: #0d6efd;
+}
+
+.icon-user h5 {
+  margin: 0px;
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.icon-user h6 {
+  margin: 0px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.form-control-lg {
+  border-radius: 50px;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  box-shadow: 0 0 6px rgba(13, 110, 253, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.form-control-lg:focus {
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.7);
+  border-color: #0d6efd;
+  outline: none;
+}
+
+.btn-secondary {
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  padding: 0.75rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #0a58ca;
+}
+
+.form-check-label {
+  user-select: none;
+}
+
+a.text-primary:hover {
+  text-decoration: underline;
+}

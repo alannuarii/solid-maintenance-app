@@ -3,7 +3,7 @@ import { Show } from "solid-js";
 
 export default function Header() {
   return (
-    <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="/img/np.png" alt="Logo" height="40" class="d-inline-block align-text-top me-3" />

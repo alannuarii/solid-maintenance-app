@@ -1,11 +1,35 @@
 // @refresh reload
-import { Router } from "@solidjs/router";
+import { Router, useLocation } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
-import { Suspense } from "solid-js";
+import { Suspense, Show } from "solid-js";
 import { MetaProvider, Title, Link } from "@solidjs/meta";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
 import "./app.css";
+
+function RootLayout(props) {
+  const location = useLocation();
+
+  // Jangan tampilkan Header & BackButton jika URL diawali dengan "/auth"
+  const isAuthPage = () => location.pathname.startsWith("/auth");
+
+  return (
+    <div class="min-vh-100">
+      <Show when={!isAuthPage()}>
+        <div class="app-bg">
+          <Header />
+
+          <div class="container content">
+            <Suspense>{props.children}</Suspense>
+          </div>
+          <Menu />
+        </div>
+      </Show>
+
+      <Suspense>{props.children}</Suspense>
+    </div>
+  );
+}
 
 export default function App() {
   return (
@@ -21,17 +45,7 @@ export default function App() {
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossOrigin="anonymous" />
 
       {/* Routing dan Layout */}
-      <Router
-        root={(props) => (
-          <div class="app-bg">
-            <Header />
-            <Menu />
-            <div class="container content">
-              <Suspense>{props.children}</Suspense>
-            </div>
-          </div>
-        )}
-      >
+      <Router root={RootLayout}>
         <FileRoutes />
       </Router>
     </MetaProvider>
