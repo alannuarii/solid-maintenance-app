@@ -23,6 +23,7 @@ export default function Login() {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         body: formData,
+        credentials: "include", // Sangat penting
       });
 
       const data = await res.json();

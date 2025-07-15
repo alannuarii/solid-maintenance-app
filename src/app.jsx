@@ -18,7 +18,6 @@ function RootLayout(props) {
       <Show when={!isAuthPage()}>
         <div class="app-bg">
           <Header />
-
           <div class="container content">
             <Suspense>{props.children}</Suspense>
           </div>
@@ -26,7 +25,10 @@ function RootLayout(props) {
         </div>
       </Show>
 
-      <Suspense>{props.children}</Suspense>
+      {/* Jika halaman auth, tampilkan children saja tanpa header, menu */}
+      <Show when={isAuthPage()}>
+        <Suspense>{props.children}</Suspense>
+      </Show>
     </div>
   );
 }
