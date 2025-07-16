@@ -45,7 +45,7 @@ export default function Login() {
       <div class="right-panel d-flex flex-column justify-content-center align-items-center">
         <form onSubmit={handleLogin} class="login-form p-4 w-100">
           <div class="icon-user text-center text-light mb-4">
-            <img src="/public/img/npwhite.png" width="250" alt="" />
+            <img src="/img/npwhite.png" width="250" alt="" />
             <h5>UP MINAHASA</h5>
             <h6>ULPLTD TAHUNA</h6>
           </div>
