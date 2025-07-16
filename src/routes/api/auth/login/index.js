@@ -9,7 +9,7 @@ export async function POST(event) {
         }
 
         // Kirim form-data ke API eksternal tanpa set Content-Type, biarkan otomatis
-        const res = await fetch(`https://api-auth.pltdtahuna.my.id/api/login`, {
+        const res = await fetch(`${process.env.API_AUTH}/api/login`, {
             method: "POST",
             body: externalFormData,
         });

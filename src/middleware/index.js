@@ -1,6 +1,6 @@
 import { createMiddleware } from "@solidjs/start/middleware";
 
-const API_AUTH_URL = "https://api-auth.pltdtahuna.my.id";
+const API_AUTH_URL = process.env.API_AUTH;
 
 function parseCookies(cookieHeader = "") {
   if (!cookieHeader) return {};

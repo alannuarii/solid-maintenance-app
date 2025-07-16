@@ -51,9 +51,9 @@ export default function Login() {
           </div>
           <div class="mb-3">
             <label for="email" class="form-label visually-hidden">
-              Username
+             Email
             </label>
-            <input id="email" type="email" placeholder="Username" class="form-control form-control-lg" required autocomplete="username" value={email()} onInput={(e) => setEmail(e.currentTarget.value)} />
+            <input id="email" type="email" placeholder="Email" class="form-control form-control-lg" required autocomplete="username" value={email()} onInput={(e) => setEmail(e.currentTarget.value)} />
           </div>
           <div class="mb-3">
             <label for="password" class="form-label visually-hidden">
@@ -61,13 +61,7 @@ export default function Login() {
             </label>
             <input id="password" type="password" placeholder="Password" class="form-control form-control-lg" required autocomplete="current-password" value={password()} onInput={(e) => setPassword(e.currentTarget.value)} />
           </div>
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="rememberMe" />
-              <label class="form-check-label" for="rememberMe">
-                Remember me
-              </label>
-            </div>
+          <div class="text-center mb-3">
             <a href="#" class="text-dark text-decoration-none">
               Forgot Password?
             </a>
