@@ -1,8 +1,8 @@
-const CACHE_NAME = 'prayer-schedule-cache-v1';
+const CACHE_NAME = 'maintenance-app-cache-v1';
 const ASSETS_TO_CACHE = [
     '/',
     '/manifest.webmanifest',
-    '/icon225.png',
+    '/icon128.png',
     '/icon450.png',
     // Tambahkan file lain yang perlu di-cache seperti CSS, JS, dll
 ];
