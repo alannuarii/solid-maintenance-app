@@ -107,7 +107,7 @@ export default function Material() {
                 when={materials().pm && materials().pm.cycles && materials().totalMaterials && materials().totalMaterials.length > 0}
                 fallback={
                   <div>
-                    <img src="/public/img/waiting.png" class="img-fluid" alt="" />
+                    <img src="/img/waiting.png" class="img-fluid" alt="" />
                   </div>
                 }
               >

@@ -2,7 +2,7 @@
   height: 100vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
-  background-image: url("../public/img/bg.png");
+  background-image: url("/img/bg.png");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;

@@ -1,13 +1,12 @@
 import { serialize } from "cookie";
 
 export async function GET() {
-  const isProd = process.env.NODE_ENV === "production";
 
   const expiredCookie = serialize("accessToken", "", {
     path: "/",
     httpOnly: true,
     sameSite: "lax",
-    secure: isProd, // true di produksi, false di development
+    secure: true, // true di produksi, false di development
     expires: new Date(0),
   });
 
