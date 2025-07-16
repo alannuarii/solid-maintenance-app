@@ -2,7 +2,7 @@ import { onMount, onCleanup, createSignal } from "solid-js";
 import { useParams } from "@solidjs/router";
 import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import { generatePMSchedule } from "../../../lib/utils/pmSchedule";
+import { generatePMSchedule } from "../../../../lib/utils/pmSchedule";
 import "./index.css";
 
 export default function PreventiveUnit() {

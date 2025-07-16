@@ -30,8 +30,12 @@
   font-weight: 700;
 }
 
-.badge{
-    font-size: 1.1rem;
+.badge {
+  font-size: 1.1rem;
+}
+
+.fc-event {
+  cursor: pointer;
 }
 
 @media (max-width: 767.98px) {

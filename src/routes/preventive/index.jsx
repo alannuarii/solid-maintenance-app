@@ -33,6 +33,37 @@ export default function Preventive() {
         height: "auto",
         contentHeight: "auto",
         aspectRatio: 1.5,
+        eventClick: function (info) {
+          const targetUrl = info.event.extendedProps.url;
+          if (targetUrl) {
+            // Ambil eventId dari URL (asumsi format /preventive/detail/{id})
+            const eventId = targetUrl.split("/").pop();
+
+            // Dapatkan semua event dari kalender (array objek event)
+            const allEvents = calendarInstance.getEvents();
+
+            // Cari event yang id-nya sama dengan eventId dari URL
+            const clickedEvent = allEvents.find((ev) => ev.id === eventId);
+
+            if (clickedEvent) {
+              // Siapkan data lengkap event sesuai permintaan yang akan disimpan ke localStorage
+              const eventData = {
+                id: clickedEvent.id,
+                title: clickedEvent.title,
+                start: clickedEvent.startStr,
+                allDay: clickedEvent.allDay,
+                color: clickedEvent.backgroundColor || clickedEvent.color,
+                extendedProps: clickedEvent.extendedProps,
+              };
+
+              // Simpan ke localStorage
+              localStorage.setItem("selectedEvent", JSON.stringify(eventData));
+            }
+
+            // Navigasi ke URL target
+            window.location.href = targetUrl;
+          }
+        },
       });
 
       calendarInstance.render();
@@ -51,7 +82,7 @@ export default function Preventive() {
   const handleSelectChange = (e) => {
     const value = e.target.value;
     if (value !== "all") {
-      window.location.href = `/preventive/${value}`;
+      window.location.href = `/preventive/unit/${value}`;
     }
   };
 

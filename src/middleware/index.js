@@ -23,7 +23,6 @@ function serializeCookie(name, value, options = {}) {
 
 export default createMiddleware({
   async onRequest(event) {
-    console.log("Middleware onRequest triggered");
 
     if (!API_AUTH_URL) {
       console.error("API_AUTH environment variable harus diisi");
@@ -32,11 +31,9 @@ export default createMiddleware({
     }
 
     const cookieHeader = event.request.headers.get("cookie");
-    console.log("Raw cookies header:", cookieHeader);
 
     const cookies = parseCookies(cookieHeader);
     const token = cookies.accessToken;
-    console.log("Token value from cookie:", token);
 
     const url = new URL(event.request.url);
     const pathname = url.pathname;

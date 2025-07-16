@@ -36,6 +36,15 @@ span {
 @media (max-width: 767.98px) {
   .content {
     margin-top: 80px !important;
-    margin-bottom: 80px !important;
+    margin-bottom: 90px !important;
+  }
+  .menu {
+    border-radius: 30px 30px 0px 0px;
+  }
+  .menu i {
+    font-size: 1.5rem;
+  }
+  .menu .label {
+    font-size: 0.9rem;
   }
 }
