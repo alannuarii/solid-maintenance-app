@@ -2,7 +2,7 @@ import { onMount, createSignal, Show } from "solid-js";
 import { A } from "@solidjs/router";
 import { engines } from "../lib/data/engineData";
 import { generatePMSchedule } from "../lib/utils/pmSchedule";
-import { convertTime } from "~/lib/data/date";
+import { convertTime } from "~/lib/utils/date";
 import "./index.css";
 
 export default function Home() {

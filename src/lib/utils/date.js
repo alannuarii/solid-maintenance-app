@@ -1,7 +1,10 @@
 import { DateTime } from 'luxon';
 
-export function convertTime(waktu, format = 3) {
-    const dt = DateTime.fromISO(waktu, { zone: 'Asia/Makassar' });
+export function convertTime(waktu, format = 3, useZone = false) {
+    // Jika useZone true, set zona waktu ke 'Asia/Makassar', kalau false gunakan default
+    const dt = useZone
+        ? DateTime.fromISO(waktu, { zone: 'Asia/Makassar' })
+        : DateTime.fromISO(waktu);
 
     switch (format) {
         case 1:
