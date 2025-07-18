@@ -47,4 +47,9 @@ span {
   .menu .label {
     font-size: 0.9rem;
   }
+  .header .navbar-toggler-icon {
+    width: 30px !important;
+    height: 30px !important;
+    background-size: contain !important;
+  }
 }

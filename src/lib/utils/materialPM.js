@@ -1,5 +1,5 @@
 
-import { fastMovingMaterials } from "../../../public/data/fastMoving";
+import { fastMovingMaterials } from "../data/fastMoving.js";
 
 export function addMaterialsToSchedule(scheduleArray) {
     // Define ordered cycles for comparison

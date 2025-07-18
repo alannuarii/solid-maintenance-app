@@ -2,8 +2,8 @@ import { poolMain } from "../../../lib/db/mariadb.js";
 
 async function getServiceHour() {
     const query = `
-        SELECT unit, jamoperasi FROM (
-            SELECT unit, overhaul AS jamoperasi
+        SELECT waktu, unit, ganti_oli, jamoperasi FROM (
+            SELECT waktu, unit, ganti_oli, overhaul AS jamoperasi
             FROM preventive
             ORDER BY id DESC
             LIMIT 7

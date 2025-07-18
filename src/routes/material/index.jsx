@@ -1,5 +1,5 @@
 import "./index.css";
-import { engines } from "../../../public/data/engineData";
+import { engines } from "../../lib/data/engineData";
 import { createSignal, createEffect, Show } from "solid-js";
 import { generatePMSchedule } from "~/lib/utils/pmSchedule";
 import { sumMaterialsAndPMByCycle } from "~/lib/utils/materialPM";

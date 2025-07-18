@@ -1,4 +1,4 @@
-import { pmCycles } from "../../../public/data/pmCycles.js";
+import { pmCycles } from "../data/pmCycles.js";
 import { generateRandomId } from "./random.js";
 import { DateTime } from "luxon";
 

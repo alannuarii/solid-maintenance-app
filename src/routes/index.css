@@ -1,0 +1,9 @@
+.home .title{
+    font-size: 1.3rem;
+}
+
+.home .btn {
+  border: none;
+  padding: 0 !important;
+  text-decoration: none !important;
+}

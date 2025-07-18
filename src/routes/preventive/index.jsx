@@ -3,7 +3,7 @@ import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import "./index.css";
 import { generatePMSchedule } from "../../lib/utils/pmSchedule";
-import { engines } from "../../../public/data/engineData";
+import { engines } from "../../lib/data/engineData";
 
 export default function Preventive() {
   let calendarRef;
