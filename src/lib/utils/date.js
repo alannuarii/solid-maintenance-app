@@ -2,18 +2,9 @@ import { DateTime } from 'luxon';
 
 const DEFAULT_ZONE = 'Asia/Makassar';
 
-function isMobile() {
-    return /Mobi|Android/i.test(navigator.userAgent);
-}
-
 export function convertTime(waktu, format = 3) {
-    let zone;
-    if (process.env.NODE_ENV !== 'production' && !isMobile()) {
-        zone = DEFAULT_ZONE;
-    }
-
-    const dt = zone
-        ? DateTime.fromISO(waktu, { zone })
+    const dt = process.env.NODE_ENV !== 'production'
+        ? DateTime.fromISO(waktu, { DEFAULT_ZONE })
         : DateTime.fromISO(waktu);
 
     switch (format) {
