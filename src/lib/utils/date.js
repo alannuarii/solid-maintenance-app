@@ -1,16 +1,22 @@
-import { DateTime } from 'luxon';
-
 export function convertTime(waktu, format = 3) {
-    const dt = DateTime.fromISO(waktu);
+    const dt = new Date(waktu);
+
+    const bulanIndonesia = [
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+    ];
+    const hariIndonesia = [
+        'Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'
+    ];
 
     switch (format) {
         case 1:
-            return `${dt.day} ${dt.setLocale('id').toFormat('LLLL')} ${dt.year} Pukul ${dt.hour} WITA`;
+            return `${dt.getDate()} ${bulanIndonesia[dt.getMonth()]} ${dt.getFullYear()} Pukul ${dt.getHours()} WITA`;
         case 2:
-            return dt.toFormat('yyyy-MM-dd HH:mm:ss');
+            return `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')} ${String(dt.getHours()).padStart(2, '0')}:${String(dt.getMinutes()).padStart(2, '0')}:${String(dt.getSeconds()).padStart(2, '0')}`;
         case 3:
-            return dt.setLocale('id').toFormat('cccc, d LLLL yyyy');
+            return `${hariIndonesia[dt.getDay()]}, ${dt.getDate()} ${bulanIndonesia[dt.getMonth()]} ${dt.getFullYear()}`;
         default:
-            return dt.toISO();
+            return dt.toISOString();
     }
 }
