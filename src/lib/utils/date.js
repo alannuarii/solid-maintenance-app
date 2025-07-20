@@ -1,5 +1,6 @@
 export function convertTime(waktu, format = 3) {
     const dt = new Date(waktu);
+    dt.setHours(dt.getHours() - 8); // Kurangi 8 jam
 
     const bulanIndonesia = [
         'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
