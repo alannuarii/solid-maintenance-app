@@ -1,11 +1,7 @@
 import { DateTime } from 'luxon';
 
-const DEFAULT_ZONE = 'Asia/Makassar';
-
 export function convertTime(waktu, format = 3) {
-    const dt = process.env.NODE_ENV !== 'production'
-        ? DateTime.fromISO(waktu, { DEFAULT_ZONE })
-        : DateTime.fromISO(waktu);
+    const dt = DateTime.fromISO(waktu);
 
     switch (format) {
         case 1:
