@@ -1,10 +1,6 @@
 export function convertTime(waktu, format = 3) {
     const dt = new Date(waktu);
-
-    // Kurangi 8 jam hanya jika NODE_ENV production
-    if (typeof process !== "undefined" && process.env.NODE_ENV === "production") {
-        dt.setHours(dt.getHours() - 8);
-    }
+    // dt.setHours(dt.getHours()); // Kurangi 8 jam
 
     const bulanIndonesia = [
         'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
