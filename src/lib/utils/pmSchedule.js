@@ -1,6 +1,5 @@
 import { pmCycles } from "../data/pmCycles.js";
 import { generateRandomId } from "./random.js";
-import { DateTime } from "luxon";
 
 export const generatePMSchedule = (units, startDateStr = null, endDateStr = null) => {
     const colorsByUnit = {
@@ -16,26 +15,25 @@ export const generatePMSchedule = (units, startDateStr = null, endDateStr = null
     const fiveYearHours = 24 * 1825; // default 5 tahun dalam jam
     const maxIterations = 1000;
 
-    // Zona waktu Asia/Makassar dengan Luxon
-    const zone = "Asia/Makassar";
-
-    // Tanggal hari ini dengan zona waktu Asia/Makassar, di-reset ke awal hari (00:00)
-    const today = DateTime.now().setZone(zone).startOf('day');
+    // Tanggal hari ini di-reset ke awal hari (00:00)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
     // Parsing dan validasi tanggal mulai
-    let baseDate = startDateStr ? DateTime.fromISO(startDateStr, { zone }) : DateTime.now().setZone(zone);
-    baseDate = baseDate.startOf('day');
-    if (baseDate < today) baseDate = today;
+    let baseDate = startDateStr ? new Date(startDateStr) : new Date();
+    baseDate.setHours(0, 0, 0, 0);
+    if (baseDate < today) baseDate = new Date(today);
 
     // Parsing tanggal akhir, jika tidak ada pakai default durasi 5 tahun dari baseDate
-    let endDate = endDateStr ? DateTime.fromISO(endDateStr, { zone }).endOf('day') : baseDate.plus({ hours: fiveYearHours }).endOf('day');
+    let endDate = endDateStr ? new Date(endDateStr) : new Date(baseDate.getTime() + fiveYearHours * 60 * 60 * 1000);
+    endDate.setHours(23, 59, 59, 999);
 
     let allSchedules = [];
 
     units.forEach(({ unit, jamoperasi }) => {
         let reducedHours = jamoperasi % 3000;
         let cycleHours = reducedHours;
-        let currentBaseDate = baseDate;
+        let currentBaseDate = new Date(baseDate);
 
         for (let i = 0; i < maxIterations; i++) {
             const pmCycle = pmCycles.find(cycle => cycle.min <= cycleHours && cycleHours < cycle.max);
@@ -46,7 +44,9 @@ export const generatePMSchedule = (units, startDateStr = null, endDateStr = null
             if (hoursToNextPM <= 0) break;
 
             const daysToNextPM = hoursToNextPM / 24;
-            let pmDate = currentBaseDate.plus({ days: Math.ceil(daysToNextPM) });
+            let pmDate = new Date(currentBaseDate.getTime());
+            pmDate.setDate(pmDate.getDate() + Math.ceil(daysToNextPM));
+            pmDate.setHours(0, 0, 0, 0);
 
             if (pmDate > endDate) break;
 
@@ -55,7 +55,7 @@ export const generatePMSchedule = (units, startDateStr = null, endDateStr = null
             allSchedules.push({
                 id: eventId,
                 title: `${pmCycle.pm} #${unit}`,
-                start: pmDate.toISODate(),
+                start: pmDate.toISOString().slice(0, 10),
                 allDay: true,
                 color: colorsByUnit[unit] || "#000000",
                 extendedProps: {
@@ -63,13 +63,13 @@ export const generatePMSchedule = (units, startDateStr = null, endDateStr = null
                     targetHours: targetHours,
                     daysFromToday: daysToNextPM,
                     unit: unit,
-                    url: `/preventive/detail/${eventId}`, // Gunakan eventId di URL
+                    url: `/preventive/detail/${eventId}`,
                 },
             });
 
             cycleHours = targetHours;
             if (cycleHours >= 3000) cycleHours -= 3000;
-            currentBaseDate = pmDate;
+            currentBaseDate = new Date(pmDate);
         }
     });
 
