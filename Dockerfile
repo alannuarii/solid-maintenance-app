@@ -39,6 +39,9 @@ ENV API_AUTH=${API_AUTH}
 ARG NODE_ENV
 ENV NODE_ENV=${NODE_ENV}
 
+ARG TZ
+ENV TZ=${TZ}
+
 COPY --from=builder /app /app
 
 
