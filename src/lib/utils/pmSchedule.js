@@ -15,14 +15,12 @@ export const generatePMSchedule = (units, startDateStr = null, endDateStr = null
     const fiveYearHours = 24 * 1825; // default 5 tahun dalam jam
     const maxIterations = 1000;
 
-    // Tanggal hari ini di-reset ke awal hari (00:00)
+    // Tanggal hari ini di-reset ke awal hari (00:00) - jadi ini selalu start date
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // Parsing dan validasi tanggal mulai
-    let baseDate = startDateStr ? new Date(startDateStr) : new Date();
-    baseDate.setHours(0, 0, 0, 0);
-    if (baseDate < today) baseDate = new Date(today);
+    // Base date tetap hari ini, tidak terpengaruh oleh startDateStr
+    let baseDate = new Date(today);
 
     // Parsing tanggal akhir, jika tidak ada pakai default durasi 5 tahun dari baseDate
     let endDate = endDateStr ? new Date(endDateStr) : new Date(baseDate.getTime() + fiveYearHours * 60 * 60 * 1000);
@@ -50,7 +48,7 @@ export const generatePMSchedule = (units, startDateStr = null, endDateStr = null
 
             if (pmDate > endDate) break;
 
-            const eventId = generateRandomId(10); // Generate ID acak sebelum buat event
+            const eventId = generateRandomId(10);
 
             allSchedules.push({
                 id: eventId,
@@ -72,6 +70,16 @@ export const generatePMSchedule = (units, startDateStr = null, endDateStr = null
             currentBaseDate = new Date(pmDate);
         }
     });
+
+    // Jika ada batasan rentang startDateStr, lakukan filter result di sini
+    if (startDateStr) {
+        const startDateFilter = new Date(startDateStr);
+        startDateFilter.setHours(0, 0, 0, 0);
+        allSchedules = allSchedules.filter(schedule => {
+            const scheduleDate = new Date(schedule.start);
+            return scheduleDate >= startDateFilter && scheduleDate <= endDate;
+        });
+    }
 
     return allSchedules;
 };

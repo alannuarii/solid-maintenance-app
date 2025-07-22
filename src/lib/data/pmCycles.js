@@ -24,3 +24,17 @@ export const pmCycles = [
     { min: 2750, max: 2875, pm: "P1" },
     { min: 2875, max: 3000, pm: "P5" },
 ];
+
+
+export const gantiOliHours = (sh, unit) => {
+    const excludedUnits = [4, 5, 8, 9];
+
+    if (sh <= 125) return 125;
+    if (sh > 125 && sh <= 250) return 250;
+
+    if (sh > 250 && sh <= 375 && !excludedUnits.includes(unit)) return 375;
+    if (sh > 375 && sh <= 500 && !excludedUnits.includes(unit)) return 500;
+
+    // Jika nilai sh di luar range yang didefinisikan, bisa tambahkan pengembalian default
+    return null;
+}
