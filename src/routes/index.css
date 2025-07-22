@@ -8,6 +8,6 @@
   text-decoration: none !important;
 }
 
-.home td, th, caption{
+.home td, .home td .btn, .home th, .home caption{
   font-size: 0.7rem;
 }
