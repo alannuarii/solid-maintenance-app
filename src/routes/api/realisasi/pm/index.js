@@ -11,8 +11,6 @@ export async function POST(event) {
         const unit = formData.get("unit");
         const pm = formData.get("pm");
 
-        console.log({ waktu, unit, pm });
-
         // Validasi sederhana
         if (!waktu || !unit || !pm) {
             return json({ error: "Field waktu, unit, dan pm harus diisi" }, { status: 400 });
@@ -27,6 +25,29 @@ export async function POST(event) {
 
     } catch (error) {
         console.error("Error saat POST /api/realisasi/pm:", error);
+
+        // Cek error duplikat unique constraint MariaDB error code 1062
+        if (error && error.code === 'ER_DUP_ENTRY') {
+            return json(
+                { error: "Data dengan kombinasi waktu dan unit tersebut sudah ada. Tidak boleh duplikasi." },
+                { status: 409 }
+            );
+        }
+
+        return json({ error: "Internal Server Error" }, { status: 500 });
+    }
+}
+
+
+export async function GET(event) {
+    try {
+        // Contoh query ambil data dari MariaDB
+        const [rows] = await poolMain.execute("SELECT * FROM realisasi_pm ORDER BY waktu DESC");
+
+        // Kembalikan data dalam bentuk JSON
+        return json(rows);
+    } catch (error) {
+        console.error("Error saat GET /api/realisasi/pm:", error);
         return json({ error: "Internal Server Error" }, { status: 500 });
     }
 }

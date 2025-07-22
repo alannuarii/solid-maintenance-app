@@ -1,0 +1,8 @@
+CREATE TABLE realisasi_pm
+(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  waktu DATETIME,
+  unit INT,
+  pm VARCHAR(2),
+  CONSTRAINT unique_waktu_unit UNIQUE (waktu, unit)
+);

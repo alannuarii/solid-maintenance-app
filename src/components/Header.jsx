@@ -71,6 +71,9 @@ export default function Header() {
                 <a href="/preventive/realisasi/input" class="list-group-item list-group-item-action ms-3" onClick={closeOffcanvas}>
                   Input Realisasi PM
                 </a>
+                <a href="/preventive/realisasi" class="list-group-item list-group-item-action ms-3" onClick={closeOffcanvas}>
+                  Realisasi PM
+                </a>
                 <li class="list-group-item fw-bold">Periodic maintenance</li>
                 <li class="list-group-item fw-bold">Material</li>
                 <a href="/material" class="list-group-item list-group-item-action ms-3" onClick={closeOffcanvas}>
