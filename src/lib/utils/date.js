@@ -21,3 +21,9 @@ export function convertTime(waktu, format = 3) {
             return dt.toISOString();
     }
 }
+
+export function convertDecimalDaysToDaysHours(decimalDays) {
+    const days = Math.floor(decimalDays);
+    const hours = Math.round((decimalDays - days) * 24);
+    return `${days} hari ${hours} jam`;
+}

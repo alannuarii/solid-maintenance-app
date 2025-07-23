@@ -1,0 +1,12 @@
+.detail .title {
+  font-weight: 700;
+}
+
+.detail h5 {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.detail label, .detail td, .detail th, .detail input {
+  font-size: 0.8rem;
+}

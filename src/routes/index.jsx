@@ -13,7 +13,6 @@ export default function Home() {
     try {
       const response = await fetch("/api/servicehour");
       const data = await response.json();
-      const operationHourCycles = [125, 250, 375, 500];
       const gantiOliCycles = [500, 250, 250, 500, 500, 250, 250];
       const overhaulCycles = [6000, 6000, 6000, 5000, 5000, 6000, 6000];
       const pmData = generatePMSchedule(data);
@@ -34,20 +33,28 @@ export default function Home() {
       });
 
       setCurrentHours(fullData);
+      console.log("Current Hours Data:", currentHours());
     } catch (error) {
       console.error("Failed to fetch service hour data:", error);
     }
   });
 
-  function savePmToLocalStorage(pm) {
-    if (pm) {
+  function savePmToLocalStorage(item) {
+    if (item) {
       const eventData = {
-        id: pm.id,
-        title: pm.title,
-        start: pm.startStr || "",
-        allDay: pm.allDay || false,
-        color: pm.backgroundColor || pm.color || "",
-        extendedProps: pm.extendedProps || {},
+        id: item.pm.id,
+        mesin: item.mesin,
+        unit: item.unit,
+        pm: item.pm.title.split(" ")[0],
+        gantiOli: item.gantiOli,
+        gantiOliCycles: item.gantiOliCycles,
+        overhaul: item.overhaul,
+        overhaulCycles: item.overhaulCycles,
+        operasi: (item.overhaul % 3000) % item.gantiOliCycles,
+        tanggalPM: item.pm.start,
+        timeToGo: item.pm.extendedProps.daysFromToday,
+        targetHours: item.pm.extendedProps.targetHours,
+        currentHours: item.pm.extendedProps.currentHours,
       };
       localStorage.setItem("selectedEvent", JSON.stringify(eventData));
       console.log("Data PM disimpan ke localStorage:", eventData);
@@ -118,7 +125,7 @@ export default function Home() {
                   {Math.floor(item.overhaul)} / <span class="fw-bold">{item.overhaulCycles}</span>
                 </td>
                 <td>
-                  <A href={`/preventive/detail/${item.pm.id}`} onClick={() => savePmToLocalStorage(item.pm)} class="btn" title="Simpan data PM ke localStorage dan buka detail">
+                  <A href={`/preventive/detail/${item.pm.id}`} onClick={() => savePmToLocalStorage(item)} class="btn" title="Simpan data PM ke localStorage dan buka detail">
                     {gantiOliHours((item.overhaul % 3000) % item.gantiOliCycles, item.unit) - Math.floor((item.overhaul % 3000) % item.gantiOliCycles)} / <span class="fw-bold">{item.pm.title.replace(/\s#\d+$/, "")}</span>
                   </A>
                 </td>
