@@ -6,3 +6,41 @@ CREATE TABLE realisasi_pm
   pm VARCHAR(2),
   CONSTRAINT unique_waktu_unit UNIQUE (waktu, unit)
 );
+
+CREATE TABLE material (
+    material_id INT PRIMARY KEY AUTO_INCREMENT,
+    material_name VARCHAR(100) NOT NULL,
+    description TEXT,
+    unit VARCHAR(20) NOT NULL,
+    alias VARCHAR(100),
+    picture VARCHAR(100)
+    stock_code VARCHAR(15) NOT NULL UNIQUE,
+);
+
+CREATE TABLE stock (
+    stock_id INT PRIMARY KEY AUTO_INCREMENT,
+    material_id INT NOT NULL,
+    initial_stock INT DEFAULT 0,
+    final_stock INT DEFAULT 0,
+    last_update DATETIME NOT NULL,
+    FOREIGN KEY (material_id) REFERENCES material(material_id)
+);
+
+CREATE TABLE material_in (
+    in_id INT PRIMARY KEY AUTO_INCREMENT,
+    material_id INT NOT NULL,
+    quantity_in INT NOT NULL,
+    date_in DATETIME NOT NULL,
+    remarks TEXT,
+    FOREIGN KEY (material_id) REFERENCES material(material_id)
+);
+
+CREATE TABLE material_out (
+    out_id INT PRIMARY KEY AUTO_INCREMENT,
+    material_id INT NOT NULL,
+    quantity_out INT NOT NULL,
+    date_out DATETIME NOT NULL,
+    remarks TEXT,
+    FOREIGN KEY (material_id) REFERENCES material(material_id)
+);
+
