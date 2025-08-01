@@ -1,0 +1,20 @@
+.detail-material .title {
+  font-size: 1.3rem;
+}
+
+.detail-material .btn {
+  border: none;
+  /* padding: 0 !important;
+  text-decoration: none !important; */
+}
+
+.detail-material label,
+.detail-material input {
+  font-size: 0.9rem;
+}
+
+.detail-material td,
+.detail-material td .btn,
+.detail-material th {
+  font-size: 0.7rem;
+}

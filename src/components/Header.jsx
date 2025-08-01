@@ -76,11 +76,11 @@ export default function Header() {
                 </a>
                 <li class="list-group-item fw-bold">Periodic maintenance</li>
                 <li class="list-group-item fw-bold">Material</li>
-                <a href="/material" class="list-group-item list-group-item-action ms-3" onClick={closeOffcanvas}>
-                  Rencana Fast Moving
+                <a href="/material/list" class="list-group-item list-group-item-action ms-3" onClick={closeOffcanvas}>
+                  Daftar Material
                 </a>
-                <a href="/" class="list-group-item list-group-item-action ms-3" onClick={closeOffcanvas}>
-                  Input Pemakaian Material
+                <a href="/material/plan" class="list-group-item list-group-item-action ms-3" onClick={closeOffcanvas}>
+                  Perencanaan Material PM
                 </a>
               </ul>
             </div>

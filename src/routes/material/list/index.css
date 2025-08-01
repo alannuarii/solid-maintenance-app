@@ -1,0 +1,16 @@
+.list-material .title {
+  font-size: 1.3rem;
+}
+
+.list-material .btn {
+  border: none;
+  /* padding: 0 !important;
+  text-decoration: none !important; */
+}
+
+.list-material td,
+.list-material td .btn,
+.list-material th,
+.list-material caption {
+  font-size: 0.7rem;
+}

@@ -1,0 +1,14 @@
+.update-detail-material .title {
+  font-size: 1.3rem;
+}
+
+.update-detail-material .btn {
+  border: none;
+  /* padding: 0 !important;
+  text-decoration: none !important; */
+}
+
+.update-detail-material label,
+.update-detail-material input {
+  font-size: 0.8rem;
+}

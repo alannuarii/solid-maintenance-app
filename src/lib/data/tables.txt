@@ -9,12 +9,15 @@ CREATE TABLE realisasi_pm
 
 CREATE TABLE material (
     material_id INT PRIMARY KEY AUTO_INCREMENT,
+    stock_code VARCHAR(15) NOT NULL UNIQUE,
     material_name VARCHAR(100) NOT NULL,
     description TEXT,
     unit VARCHAR(20) NOT NULL,
     alias VARCHAR(100),
+    engine VARCHAR(30),
+    engine_unit INT,
+    location VARCHAR(100),
     picture VARCHAR(100)
-    stock_code VARCHAR(15) NOT NULL UNIQUE,
 );
 
 CREATE TABLE stock (
