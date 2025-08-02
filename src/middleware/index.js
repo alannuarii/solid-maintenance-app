@@ -39,7 +39,7 @@ export default createMiddleware({
     const pathname = url.pathname;
 
     const isAuthPage = pathname.startsWith("/auth");
-    const isApiAuth = pathname.startsWith("/api/auth");
+    const isApiAuth = pathname.startsWith("/api");
 
     if (isApiAuth) return; // Bypass middleware untuk API Auth
 
