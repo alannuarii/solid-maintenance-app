@@ -27,10 +27,13 @@ export async function GET() {
 
         const [startDate, endDate] = getStartAndEndDate();
         const schedules = generatePMSchedule(data, startDate, endDate);
+        console.log(schedules)
         const result = schedules.map((schedule) => ({
             unit: schedule.extendedProps.unit,
             pm: schedule.title.split(' ')[0],
             waktu: schedule.start,
+            currentHours: schedule.extendedProps.currentHours,
+            targetHours: schedule.extendedProps.targetHours
         }));
         return json(result);
     } catch (error) {
