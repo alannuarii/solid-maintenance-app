@@ -12,6 +12,8 @@ export default function DetailMaterial() {
       const response = await fetch(`/api/material/detail/${stockCode}`);
       const data = await response.json();
       setMaterials(data);
+
+      console.log("Fetched Material Data:", data);
     } catch (error) {
       console.error("Failed to fetch material data:", error);
     }
@@ -39,7 +41,7 @@ export default function DetailMaterial() {
       },
       {
         label: "Mesin / Unit",
-        data: `${data.engine || "Common"} # ${data.engine_unit || "00"}`,
+        data: `${data.engine || "Common"} #${data.engine_unit || "00"}`,
       },
       {
         label: "Stok Material",
@@ -55,6 +57,14 @@ export default function DetailMaterial() {
       },
     ];
   };
+
+  const picture = () => {
+    const data = materials()[0];
+    if (data && data.picture) {
+      return `/img/materials/${data.picture}`;
+    }
+    return "/img/materials/default.png";
+  }
 
   return (
     <div class="detail-material container mt-4">
@@ -80,10 +90,7 @@ export default function DetailMaterial() {
         <hr />
         <div class="row">
           <div class="col-md-3 mb-2">
-            {/* <label for="inputEmail3" class="col-sm-4 col-form-label">
-              Foto Material
-            </label> */}
-            <img src="/img/materials/jet.jpeg" class="img-fluid rounded d-block mx-auto" alt="public/img/materials/jet.jpeg"></img>
+            <img src={picture()} class="img-fluid rounded d-block mx-auto" alt="public/img/materials/${picture()}"></img>
           </div>
           <div class="col-md-5">
             {detailData().map((item) => (

@@ -13,43 +13,66 @@ export default function Header() {
     }
   }
 
+  // Jika ingin menghindari efek melebar dropdown, gunakan class Bootstrap yang sudah ada
   return (
     <div class="header">
-      <header class="navbar navbar-light bg-dark-subtle fixed-top shadow-sm">
-        <div class="container-fluid">
+      <header class="navbar navbar-expand-lg navbar-light bg-dark-subtle fixed-top shadow-sm">
+        <div class="container-fluid h-100 d-flex align-items-center">
           <a class="navbar-brand" href="/">
             <img src="/img/np.png" alt="Logo" height="40" class="d-inline-block align-text-top me-3" />
           </a>
 
-          {/* Tombol toggle Offcanvas muncul hanya di mobile (xs-sm) */}
-          <button
-            class="navbar-toggler d-md-none" // tampilkan hanya di bawah md
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target={`#${offcanvasId()}`}
-            aria-controls={offcanvasId()}
-            aria-label="Toggle navigation"
-          >
+          {/* Tombol toggle Offcanvas - hanya muncul di mobile (xs-sm) */}
+          <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target={`#${offcanvasId()}`} aria-controls={offcanvasId()} aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          {/* Navigasi navbar biasa muncul di md ke atas */}
-          <nav class="d-none d-md-flex ms-auto">
-            <ul class="navbar-nav flex-row gap-3">
-              <li class="nav-item">
-                <a class="nav-link active" href="/preventive">
+          {/* Navigasi navbar - muncul di md ke atas */}
+          <nav class="d-none d-md-flex ms-auto h-100 align-items-center">
+            <ul class="navbar-nav flex-row gap-3 h-100 align-items-center">
+              <li class="nav-item dropdown h-100">
+                <div class="text-dark dropdown-toggle h-100 d-flex align-items-center justify-content-center" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="true">
                   Preventive Maintenance
-                </a>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item" href="/preventive">
+                      Jadwal PM
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/preventive/realisasi/input">
+                      Input Realisasi PM
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/preventive/realisasi">
+                      Realisasi PM
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link active" href="/periodic">
                   Periodic Maintenance
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="/material">
+              <li class="nav-item dropdown h-100">
+                <div class="text-dark dropdown-toggle h-100 d-flex align-items-center justify-content-center" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="true">
                   Material
-                </a>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item" href="/material/list">
+                      Daftar Material
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/material/plan">
+                      Perencanaan Material PM
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </nav>

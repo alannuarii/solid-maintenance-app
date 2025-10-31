@@ -15,8 +15,9 @@ CREATE TABLE material (
     unit VARCHAR(20) NOT NULL,
     alias VARCHAR(100),
     engine VARCHAR(30),
-    engine_unit INT,
+    engine_unit VARCHAR(2),
     location VARCHAR(100),
+    remarks TEXT,
     picture VARCHAR(100)
 );
 

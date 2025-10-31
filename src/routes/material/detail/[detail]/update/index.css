@@ -12,3 +12,8 @@
 .update-detail-material input {
   font-size: 0.8rem;
 }
+
+.update-detail-material .foto p {
+  font-size: 0.8rem;
+  margin: 0;
+}
